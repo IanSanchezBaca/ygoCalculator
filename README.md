@@ -1,0 +1,1 @@
+trying to create an Election Javascript project for a yugioh lp calc
