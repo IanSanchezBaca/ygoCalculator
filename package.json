@@ -1,0 +1,16 @@
+{
+  "name": "ygocalculator",
+  "version": "1.0.0",
+  "description": "small yugioh lp calc",
+  "license": "ISC",
+  "author": "Ian Sanchez Baca",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "election": "^0.0.0"
+  }
+}
