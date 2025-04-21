@@ -1,0 +1,49 @@
+.lifePoints {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.duelist {
+    flex-grow: 1;
+}
+
+.optionButton {
+    width: 30px;
+    height: 30px;
+    /* background-image: url('assests/exit.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    color: transparent;
+}
+
+#resetButton {
+  background-image: url('assests/reset.png');
+}
+
+#undoButton {
+    background-image: url('assests/undo.png');
+}
+
+#exitButton {
+    width: 30px;
+    height: 30px;
+    background-image: url('assests/exit.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    color: transparent; /* this should be for the text only */
+} /* exitButton */
+
+/* only use the period with class and the # with unique id's */
