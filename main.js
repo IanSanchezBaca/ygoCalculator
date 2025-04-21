@@ -10,13 +10,13 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    // width: 1024, // old width
-    // height: 728, // old height
+    width: 800, // old width
+    height: 600, // old height
     
     // this should be the best size for android???
     // this is in pixels
-    width: 1440,
-    height: 1024,
+    // width: 1440,
+    // height: 1024,
     // frame: false,
 
     webPreferences:{
@@ -33,6 +33,7 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
+
   createWindow()
 })
 
@@ -50,5 +51,9 @@ ipcMain.on('exit-app', ()=>{
     }
   })
 
-})
+});
+
+ipcMain.on('print', (event, arg) => {
+  console.log(arg);
+});
 
