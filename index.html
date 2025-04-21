@@ -15,8 +15,9 @@
 
 
 
-
+    <link rel="stylesheet" href="styles.css">
     <script defer src="render.js"></script>
+
     <!-- using the defer attribute means that the scripts loads after the html -->
 
     <title>YGO Calc</title>
@@ -24,21 +25,23 @@
 
 </head>
 
-<body style="background-color: rgb(0, 0, 0);">
+<body>
 
     <div>
         <button id="exitButton">Exit</button>
     </div>
 
-    <div>
-        <button id="duelist1">Duelist 1: 8000</button>
 
-        <div>
-            <button id="resetButton">Reset</button>
-            <button id="undoButton">Undo</button>
+    <div class="lifePoints">
+        <button class="duelist" id="duelist1">Duelist 1: 8000</button>
+
+        <div class="options">
+            <button class="optionButton" id="resetButton">Reset</button>
+
+            <button class="optionButton" id="undoButton">Undo</button>
         </div>
 
-        <button id="duelist2">Duelist 2: 8000</button>
+        <button class="duelist" id="duelist2">Duelist 2: 8000</button>
     </div>
 
     <div>
