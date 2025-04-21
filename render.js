@@ -4,11 +4,12 @@ const { ipcRenderer } = require('electron');
 
 
 /* variables */
-let p1 = 8000;
-let p2 = 8000;
+let p1 = 8000; // player 1 lifepoints
+let p2 = 8000; // player 2 lifepoints
 let player = false; 
 /* p1 is 0/false
- * p2 is 1/true */
+ * p2 is 1/true 
+ * will be using this bool to know what lifepoints i will be manipulating*/
 
 
 
@@ -25,13 +26,14 @@ exitButton.onclick = () => closeApp();
 
 p1Button.onclick = function () { swapPlayers(this); };
 p2Button.onclick = function () { swapPlayers(this); };
+// this way of creating functions is used so that you can check who is clicking it
 
 resetButton.onclick = () => reset();
 
 
 
 
-function reset(){
+function reset(){// this should reset everything
 
     const confirmation = confirm("Are you sure you want to reset?");
 
@@ -43,9 +45,10 @@ function reset(){
         Text.textContent = "clicked reset!";
         // clear log
     }
-}
+} // reset
 
-function swapPlayers(button){
+
+function swapPlayers(button){ // this only swaps the focus on which life points will be manipulating
     if(button.id === "duelist1"){
        ipcRenderer.send('print', 'duelist 1 click');
        Text.textContent = p1;
@@ -58,8 +61,9 @@ function swapPlayers(button){
     }
 
     ipcRenderer.send('print', 'player = ' + player);
-}
+} // swapPlayers
 
-function closeApp() {
+
+function closeApp() { // closes the app
     ipcRenderer.send('exit-app');
 } // exit
