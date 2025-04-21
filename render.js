@@ -42,7 +42,7 @@ function reset(){// this should reset everything
         p2 = 8000;
         p1Button.textContent = "Duelist 1: " + p1;
         p2Button.textContent = "Duelist 2: " + p2;
-        Text.textContent = "clicked reset!";
+        // Text.textContent = "clicked reset!";
         // clear log
     }
 } // reset
