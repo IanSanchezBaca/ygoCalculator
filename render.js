@@ -2,13 +2,64 @@
 
 const { ipcRenderer } = require('electron');
 
-// const {Menu} = ipcRenderer;
+
+/* variables */
+let p1 = 8000;
+let p2 = 8000;
+let player = false; 
+/* p1 is 0/false
+ * p2 is 1/true */
+
+
 
 /* Buttons */
 const exitButton = document.getElementById('exitButton');
-exitButton.onclick = closeApp;
+const p1Button = document.getElementById('duelist1');
+const p2Button = document.getElementById('duelist2');
+const resetButton = document.getElementById('resetButton');
+const Text = document.getElementById('text');
 
-/* exit */
+
+exitButton.onclick = () => closeApp(); 
+// adding the arrow makes it so that you can make a function call and it wont be called automatically
+
+p1Button.onclick = function () { swapPlayers(this); };
+p2Button.onclick = function () { swapPlayers(this); };
+
+resetButton.onclick = () => reset();
+
+
+
+
+function reset(){
+
+    const confirmation = confirm("Are you sure you want to reset?");
+
+    if (confirmation){
+        p1 = 8000;
+        p2 = 8000;
+        p1Button.textContent = "Duelist 1: " + p1;
+        p2Button.textContent = "Duelist 2: " + p2;
+        Text.textContent = "clicked reset!";
+        // clear log
+    }
+}
+
+function swapPlayers(button){
+    if(button.id === "duelist1"){
+       ipcRenderer.send('print', 'duelist 1 click');
+       Text.textContent = p1;
+       player = false;
+    }
+    else if(button.id === "duelist2"){
+        ipcRenderer.send('print', 'duelist 2 click');
+        Text.textContent = p2;
+        player = true;
+    }
+
+    ipcRenderer.send('print', 'player = ' + player);
+}
+
 function closeApp() {
     ipcRenderer.send('exit-app');
-}
+} // exit
