@@ -13,11 +13,9 @@ const createWindow = () => {
     width: 800, // old width
     height: 600, // old height
     
-    // this should be the best size for android???
-    // this is in pixels
-    // width: 1440,
-    // height: 1024,
-    // frame: false,
+    // frame: false, // makes borderless window
+    // transparent: true,
+    resizable: false,
 
     webPreferences:{
       nodeIntegration: true,
