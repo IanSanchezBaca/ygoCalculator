@@ -17,7 +17,6 @@
 .optionButton {
     width: 30px;
     height: 30px;
-    /* background-image: url('assests/exit.png'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -26,18 +25,46 @@
     color: transparent;
 }
 
+.calcWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.calc {
+   display: grid;
+   grid-template-columns: repeat(4, 50px);
+   gap: 0px;
+   padding: 20px;
+}
+
+.calc button {
+    padding: 15px;
+    font-size: 18px;
+    /* border: 1px; */
+    border-radius: 8px;
+    background-color: gray;
+    cursor: pointer;
+    /* transition: background-color 0.2s; */
+}
+
+.calc .equalSign {
+    grid-column: span 4;
+}
+
 #resetButton {
-  background-image: url('assests/reset.png');
+  background-image: url('../images/reset.png');
 }
 
 #undoButton {
-    background-image: url('assests/undo.png');
+    background-image: url('../images/undo.png');
 }
 
 #exitButton {
     width: 30px;
     height: 30px;
-    background-image: url('assests/exit.png');
+    background-image: url('../images/exit.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
