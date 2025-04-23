@@ -11,11 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- This ensures proper scaling on different screen sizes. -->
 
-    <link rel="icon" href="assests/RitoF1.ico" type="image/x-icon" />
+    <link rel="icon" href="assets/images/RitoF1.ico" type="image/x-icon" />
 
 
-
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <script defer src="render.js"></script>
 
     <!-- using the defer attribute means that the scripts loads after the html -->
@@ -27,7 +27,7 @@
 
 <body>
 
-    <div>
+    <div> <!-- exit button -->
         <button id="exitButton">Exit</button>
     </div>
 
@@ -44,40 +44,49 @@
         <button class="duelist" id="duelist2">Duelist 2: 8000</button>
     </div>
 
-    <div>
-        <p id="text">
-            bruh
-        </p>
+    <div class="card"> <!-- the text part -->
+        <div class="card-body" id="text">
+            Hello
+        </div>
     </div>
 
-    <div class="calc">
-        <div>
+    <div class="calcWrapper">
+        <div class="calc"> <!-- all the numbers -->
+            <!-- <div> -->
             <button>clr</button>
             <button>7</button>
             <button>8</button>
             <button>9</button>
-        </div>
-        <div>
+            <!-- </div> -->
+
+            <!-- <div> -->
             <button>+</button>
             <button>4</button>
             <button>5</button>
             <button>6</button>
-        </div>
-        <div>
+            <!-- </div> -->
+
+            <!-- <div> -->
             <button>-</button>
             <button>1</button>
             <button>2</button>
             <button>3</button>
-        </div>
-        <div>
+            <!-- </div> -->
+
+            <!-- <div> -->
             <button>/2</button>
             <button>0</button>
             <button>00</button>
             <button>000</button>
+            <!-- </div> -->
+
+            <button class="equalSign"> = </button>
+
         </div>
+
     </div>
 
-    <div>
+    <div> <!-- log and tools button -->
         <button id="logButton">Log</button>
         <button id="toolsButton">Tools</button>
     </div>
