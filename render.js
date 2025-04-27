@@ -5,7 +5,7 @@ const { ipcRenderer } = require('electron');
 /* variables */
 let p1 = 8000; // player 1 lifepoints
 let p2 = 8000; // player 2 lifepoints
-let symbol = '^'; // the current symbol that is being used
+let symbol = '-'; // the current symbol that is being used
 let player = false; 
 /* p1 is 0/false
 *  p2 is 1/true 
@@ -43,28 +43,44 @@ calc.addEventListener('click', (event) => {
 
 function eval(val){
     ipcRenderer.send('print', 'inside val with ' + val);
+    let currText = "";
+
+    if(player){
+        currText = p1;
+    }
+    else{
+        currText = p2;
+    }
+
 
     switch (val){
         case '-':
             symbol = '-';
+            currText = currText + symbol;
             break;
         
         case '+':
             symbol = '+';
+            currText = currText + symbol;
             break;
         
         case "clr":
+            // currText = currText + symbol;
             break;
         
         case '=':
+            currText = currText + symbol;
             break;
     
         case "/2":
+            let half = Math.ceil(currText / 2)
+            currText = currText + " - " + half
             break;
 
         default:
             ipcRenderer.send('print', 'shouldn\'t really be here!');
     }
+    ipcRenderer.send('print', 'currText: ' + currText);
 } // eval
 
 
