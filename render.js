@@ -5,20 +5,26 @@ const { ipcRenderer } = require('electron');
 /* variables */
 let p1 = 8000; // player 1 lifepoints
 let p2 = 8000; // player 2 lifepoints
+let rhs = "";
 let symbol = '-'; // the current symbol that is being used
 let player = false; 
 /* p1 is 0/false
 *  p2 is 1/true 
 *  will be using this bool to know what lifepoints i will be manipulating*/
 
-const calc = document.querySelector('.calc'); // checks for the class calc
+const calc = document.querySelector('.calc'); 
+// Checks if any of the calc buttons where pressed
 
 /* Buttons */
 const exitButton = document.getElementById('exitButton');
+const resetButton = document.getElementById('resetButton');
+
 const p1Button = document.getElementById('duelist1');
 const p2Button = document.getElementById('duelist2');
-const resetButton = document.getElementById('resetButton');
-const Text = document.getElementById('text');
+
+
+/* This should be the text that gets updated*/
+let tempText = document.getElementById('text');
 
 
 exitButton.onclick = () => closeApp(); 
@@ -41,46 +47,102 @@ calc.addEventListener('click', (event) => {
     }
 })
 
+function equals(a, b){
+    // this function will be called when the equals sign is pressed
+
+    switch (symbol){
+        case '-':
+            return a - b;
+            // break;
+        
+        case '+':
+            return Number(a) + Number(b);
+            // break;
+        
+        default:
+            ipcRenderer.send('print', 'Error: equals()');
+            break;
+    }    
+
+    return -1; // if it does return -1 something is wrong
+} // equals
+
+
 function eval(val){
     ipcRenderer.send('print', 'inside val with ' + val);
-    let currText = "";
+    let currLP = "";
 
-    if(player){
-        currText = p1;
+    
+    if(!player){
+        currLP = p1;
     }
     else{
-        currText = p2;
+        currLP = p2;
     }
 
 
     switch (val){
         case '-':
             symbol = '-';
-            currText = currText + symbol;
+            rhs = "";
+            tempText.textContent = currLP + symbol;
             break;
         
         case '+':
             symbol = '+';
-            currText = currText + symbol;
+            rhs = "";
+            tempText.textContent = currLP + symbol;
             break;
         
         case "clr":
-            // currText = currText + symbol;
+            rhs = "";
+            tempText.textContent = currLP;
             break;
         
-        case '=':
-            currText = currText + symbol;
-            break;
-    
         case "/2":
-            let half = Math.ceil(currText / 2)
-            currText = currText + " - " + half
+            symbol = '-'
+            
+            rhs = Math.ceil(currLP / 2)
+
+            if(rhs == 1){
+                rhs = "";
+            }
+            else{
+                tempText.textContent = currLP + symbol + rhs;
+            }
+
+            
+            break;
+
+        case '=':
+            if(!rhs){
+                ipcRenderer.send('print', "rhs empty.");
+                break;
+            } // pretty much dont do anything if rhs is zero
+
+            if(!player){
+                p1 = equals(p1, rhs);
+                p1Button.textContent = "Duelist 1: " + p1;
+                tempText.textContent = p1;
+            }
+            else{
+                p2 = equals(p2, rhs);
+                p2Button.textContent = "Duelist 2: " + p2;
+                tempText.textContent = p2;
+            }
+
+            // cleaning up the values
+            rhs = "";
+
             break;
 
         default:
-            ipcRenderer.send('print', 'shouldn\'t really be here!');
+            rhs = rhs + val;
+            tempText.textContent = currLP + symbol + rhs;
+            // ipcRenderer.send('print', 'new rhs: ' + rhs);
+            break;
     }
-    ipcRenderer.send('print', 'currText: ' + currText);
+    // ipcRenderer.send('print', 'currLP: ' + currLP);
 } // eval
 
 
@@ -93,7 +155,8 @@ function reset(){// this should reset everything
         p2 = 8000;
         p1Button.textContent = "Duelist 1: " + p1;
         p2Button.textContent = "Duelist 2: " + p2;
-        // Text.textContent = "clicked reset!";
+        tempText.textContent = p1;
+        rhs = "";
         // clear log
     }
 } // reset
@@ -113,7 +176,8 @@ function swapPlayers(button){ // this only swaps the focus on which life points 
         ipcRenderer.send('print', 'player = duelist2');
     }
 
-   
+    eval("clr")
+
 } // swapPlayers
 
 
