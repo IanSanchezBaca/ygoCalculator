@@ -20,7 +20,6 @@ function flip(){
         } else {
             ans = "tails.";
         }
-
         tempText.textContent = "coin landed on " + ans;
     }, 500); // 1/2-second delay
 
@@ -31,9 +30,6 @@ function roll(){
     
     setTimeout(() => {
         let ans = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
-        
-
-
         tempText.textContent = "die landed on " + ans;
     }, 500); // 1/2-second delay
 } // roll
