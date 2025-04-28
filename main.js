@@ -107,6 +107,10 @@ ipcMain.on('log', () => {
 
   logWin.loadFile('assets/html/log.html');
 
+  logWin.webContents.on('did-finish-load', () => {
+    logWin.webContents.send('logging');
+  })
+
   logWin.once('ready-to-show', () => {
     logWin.show();
   })
