@@ -9,6 +9,7 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
  */
 
 let win; 
+let toolsWin;
 /* the main window.
  * need this to be global as it will need to be linked as the parent to sub windows */
 
@@ -60,7 +61,7 @@ ipcMain.on('print', (event, arg) => {
 
 ipcMain.on('tools', () => {
   
-  const toolsWin = new BrowserWindow({
+  toolsWin = new BrowserWindow({
     width: 400,
     height: 300,
     parent: win,
@@ -81,6 +82,12 @@ ipcMain.on('tools', () => {
   })
 
 });
+
+ipcMain.on('closeTools', () => {
+  if(toolsWin){
+    toolsWin.close();
+  }
+})
 
 ipcMain.on('log', () => {
   
