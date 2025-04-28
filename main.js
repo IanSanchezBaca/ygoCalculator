@@ -8,8 +8,12 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
  * dialog: is used to create a popup window
  */
 
+let win; 
+/* the main window.
+ * need this to be global as it will need to be linked as the parent to sub windows */
+
 const createWindow = () => {
-  const win = new BrowserWindow({
+    win = new BrowserWindow({
     width: 800, // old width
     height: 600, // old height
     
@@ -31,7 +35,6 @@ const createWindow = () => {
 }
 
 app.whenReady().then(() => {
-
   createWindow()
 })
 
@@ -53,5 +56,53 @@ ipcMain.on('exit-app', ()=>{
 
 ipcMain.on('print', (event, arg) => {
   console.log(arg);
+});
+
+ipcMain.on('tools', () => {
+  
+  const toolsWin = new BrowserWindow({
+    width: 400,
+    height: 300,
+    parent: win,
+    modal: true, // blocks input to main window
+    show: false, // dont show until ready
+    frame: true, // true: border, false: borderless window
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  });
+
+  toolsWin.loadFile('tools.html');
+
+  toolsWin.once('ready-to-show', () => {
+    toolsWin.show();
+  })
+
+});
+
+ipcMain.on('log', () => {
+  
+  const logWin = new BrowserWindow({
+    width: 600,
+    height: 800,
+    parent: win,
+    modal: true, // blocks input to main window
+    show: false, // dont show until ready
+    frame: true, // true: border, false: borderless window
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  });
+
+  logWin.loadFile('log.html');
+
+  logWin.once('ready-to-show', () => {
+    logWin.show();
+  })
+
 });
 

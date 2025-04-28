@@ -12,12 +12,14 @@ let player = false;
 *  p2 is 1/true 
 *  will be using this bool to know what lifepoints i will be manipulating*/
 
-const calc = document.querySelector('.calc'); 
+const calc = document.querySelector('.calc');
 // Checks if any of the calc buttons where pressed
 
 /* Buttons */
 const exitButton = document.getElementById('exitButton');
 const resetButton = document.getElementById('resetButton');
+const toolsButton = document.getElementById('toolsButton');
+const logButton = document.getElementById('logButton');
 
 const p1Button = document.getElementById('duelist1');
 const p2Button = document.getElementById('duelist2');
@@ -36,6 +38,8 @@ p2Button.onclick = function () { swapPlayers(this); };
 // this way of creating functions is used so that you can check who is clicking it
 
 resetButton.onclick = () => reset();
+toolsButton.onclick = () => openTools();
+logButton.onclick = () => openLog();
 
 
     
@@ -184,3 +188,13 @@ function swapPlayers(button){ // this only swaps the focus on which life points 
 function closeApp() { // closes the app
     ipcRenderer.send('exit-app');
 } // exit
+
+
+function openLog(){
+    ipcRenderer.send('log');
+}
+
+function openTools(){
+    ipcRenderer.send('tools');
+}
+
