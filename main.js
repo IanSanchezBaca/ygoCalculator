@@ -74,7 +74,7 @@ ipcMain.on('tools', () => {
     }
   });
 
-  toolsWin.loadFile('tools.html');
+  toolsWin.loadFile('assets/html/tools.html');
 
   toolsWin.once('ready-to-show', () => {
     toolsWin.show();
@@ -98,7 +98,7 @@ ipcMain.on('log', () => {
     }
   });
 
-  logWin.loadFile('log.html');
+  logWin.loadFile('assets/html/log.html');
 
   logWin.once('ready-to-show', () => {
     logWin.show();
