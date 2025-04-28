@@ -1,3 +1,4 @@
+<!-- tools.html -->
 <!DOCTYPE html>
 <html>
 
@@ -14,8 +15,7 @@
     <link rel="icon" href="assets/images/RitoF1.ico" type="image/x-icon" />
 
 
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <script defer src="../js/tools.js"></script>
 
     <!-- using the defer attribute means that the scripts loads after the html -->
@@ -24,7 +24,48 @@
 </head>
 
 <body>
-    tools.html
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col">
+                <button>
+                    exit
+                </button>
+            </div>
+
+        </div>
+
+        <!-- <div class="w-100"></div> -->
+        <div class="row my-1">
+
+            <div class="col border border-dark pt-5" id="coinBtn">
+                <!-- this should be the image code -->
+
+                <div class="col border border-dark mb-0 mt-5">
+                    <!-- "text box"-->
+                    <p class="text-center m-0">coin</p>
+                </div>
+            </div>
+
+            <div class="col border border-dark pt-5" id="diceBtn">
+                <!-- this should be the image code -->
+
+                <div class="col border border-dark mb-0 mt-5">
+                    <!-- "text box"-->
+                    <p class="text-center m-0">dice</p>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row border border-dark">
+            <p class="my-1 p-2 text-center" id="flavorText">
+                Choose your tool.
+            </p>
+        </div>
+    </div>
 </body>
 
 
