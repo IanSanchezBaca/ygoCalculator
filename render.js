@@ -1,6 +1,6 @@
 /* This file gives the code what it needs to function correctly */
 const { ipcRenderer } = require('electron');
-
+const { logging } = require('./assets/js/log.js')
 
 /* variables */
 let p1 = 8000; // player 1 lifepoints
@@ -53,10 +53,18 @@ calc.addEventListener('click', (event) => {
 
 function equals(a, b){
     // this function will be called when the equals sign is pressed
+    let sum;
+
 
     switch (symbol){
         case '-':
-            return a - b;
+            sum = a - b;
+            
+            if(sum <= 0){
+                return 0;    
+            }
+
+            return sum;
             // break;
         
         case '+':
@@ -73,7 +81,7 @@ function equals(a, b){
 
 
 function eval(val){
-    ipcRenderer.send('print', 'inside val with ' + val);
+    // ipcRenderer.send('print', 'inside val with ' + val);
     let currLP = "";
 
     
@@ -113,16 +121,17 @@ function eval(val){
             }
             else{
                 tempText.textContent = currLP + symbol + rhs;
-            }
-
-            
+            } 
             break;
 
         case '=':
+            logging();
             if(!rhs){
-                ipcRenderer.send('print', "rhs empty.");
+                // ipcRenderer.send('print', "rhs empty.");
                 break;
             } // pretty much dont do anything if rhs is zero
+            
+
 
             if(!player){
                 p1 = equals(p1, rhs);
@@ -171,13 +180,13 @@ function swapPlayers(button){ // this only swaps the focus on which life points 
     //    ipcRenderer.send('print', 'duelist 1 click');
        Text.textContent = p1;
        player = false;
-       ipcRenderer.send('print', 'player = duelist1');
+    //    ipcRenderer.send('print', 'player = duelist1');
     }
     else if(button.id === "duelist2" && !player){
         // ipcRenderer.send('print', 'duelist 2 click');
         Text.textContent = p2;
         player = true;
-        ipcRenderer.send('print', 'player = duelist2');
+        // ipcRenderer.send('print', 'player = duelist2');
     }
 
     eval("clr")
