@@ -125,24 +125,30 @@ function eval(val){
             break;
 
         case '=':
-            logging();
+            
             if(!rhs){
                 // ipcRenderer.send('print', "rhs empty.");
                 break;
             } // pretty much dont do anything if rhs is zero
             
-
+            
 
             if(!player){
                 p1 = equals(p1, rhs);
                 p1Button.textContent = "Duelist 1: " + p1;
                 tempText.textContent = p1;
+
+                logging(player, symbol, rhs, p1);
             }
             else{
                 p2 = equals(p2, rhs);
                 p2Button.textContent = "Duelist 2: " + p2;
                 tempText.textContent = p2;
+                
+                logging(player, symbol, rhs, p2);
             }
+
+            // logging(player, symbol, rhs, result);
 
             // cleaning up the values
             rhs = "";
