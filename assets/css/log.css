@@ -1,0 +1,19 @@
+.bg-red {
+    background-color: rgb(253, 164, 164);
+    padding: 4px;
+}
+
+.bg-green {
+    background-color: rgb(163, 255, 163);
+    padding: 4px;
+}
+
+.bg-blue {
+    background-color: rgb(114, 114, 253);
+    padding: 4px;
+}
+
+.bg-gray {
+    background-color: rgb(126, 126, 126);
+    padding: 4px;
+}

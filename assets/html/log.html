@@ -15,6 +15,7 @@
 
 
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/log.css">
     <script defer src="../js/log.js"></script>
 
     <!-- using the defer attribute means that the scripts loads after the html -->
@@ -23,12 +24,19 @@
 </head>
 
 <body>
-    <p id="p1Txt">
-        If youre seeing this, it didnt work.
-    </p>
-    <p id="p2Txt">
-        This is where the lifepoints are.
-    </p>
+    <div class="container m-0">
+        <div class="row">
+
+            <div id="p1Txt" class="text-center col">
+                This should not be here. player 1
+            </div>
+
+            <div id="p2Txt" class="text-center col">
+                This should not be here. player 2
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>

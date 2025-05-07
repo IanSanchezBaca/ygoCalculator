@@ -1,6 +1,6 @@
 /* This file gives the code what it needs to function correctly */
 const { ipcRenderer } = require('electron');
-const { logging } = require('./assets/js/log.js')
+const { logging, showLog } = require('./assets/js/log.js')
 
 /* variables */
 let p1 = 8000; // player 1 lifepoints
@@ -11,6 +11,15 @@ let player = false;
 /* p1 is 0/false
 *  p2 is 1/true 
 *  will be using this bool to know what lifepoints i will be manipulating*/
+
+let p1log = [
+    ["", 8000, 0]
+];
+
+let p2log = [
+    ["", 8000, 0]
+];
+
 
 const calc = document.querySelector('.calc');
 // Checks if any of the calc buttons where pressed
@@ -127,7 +136,6 @@ function eval(val){
         case '=':
             
             if(!rhs){
-                // ipcRenderer.send('print', "rhs empty.");
                 break;
             } // pretty much dont do anything if rhs is zero
             
@@ -138,20 +146,23 @@ function eval(val){
                 p1Button.textContent = "Duelist 1: " + p1;
                 tempText.textContent = p1;
 
-                logging(player, symbol, rhs, p1);
+                logging(p1log, p2log, player, symbol, rhs, p1);
             }
             else{
                 p2 = equals(p2, rhs);
                 p2Button.textContent = "Duelist 2: " + p2;
                 tempText.textContent = p2;
                 
-                logging(player, symbol, rhs, p2);
+                logging(p1log, p2log, player, symbol, rhs, p2);
             }
 
             // logging(player, symbol, rhs, result);
 
             // cleaning up the values
             rhs = "";
+
+            // reseting symbol to minus
+            symbol = '-';
 
             break;
 
@@ -161,6 +172,10 @@ function eval(val){
             // ipcRenderer.send('print', 'new rhs: ' + rhs);
             break;
     }
+
+    
+    
+
     // ipcRenderer.send('print', 'currLP: ' + currLP);
 } // eval
 
@@ -176,7 +191,15 @@ function reset(){// this should reset everything
         p2Button.textContent = "Duelist 2: " + p2;
         tempText.textContent = p1;
         rhs = "";
+        
         // clear log
+        p1log = [
+            ["", 8000, 0]
+        ];
+        p2log = [
+            ["", 8000, 0]
+        ];
+        
     }
 } // reset
 
@@ -206,7 +229,7 @@ function closeApp() { // closes the app
 
 
 function openLog(){
-    ipcRenderer.send('log');
+    ipcRenderer.send('log', p1log, p2log);
 }
 
 function openTools(){

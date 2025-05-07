@@ -89,7 +89,7 @@ ipcMain.on('closeTools', () => {
   }
 })
 
-ipcMain.on('log', () => {
+ipcMain.on('log', (event, v1, v2) => {
   
   const logWin = new BrowserWindow({
     width: 600,
@@ -108,7 +108,7 @@ ipcMain.on('log', () => {
   logWin.loadFile('assets/html/log.html');
 
   logWin.webContents.on('did-finish-load', () => {
-    logWin.webContents.send('logging');
+    logWin.webContents.send('logging', v1, v2);
   })
 
   logWin.once('ready-to-show', () => {
