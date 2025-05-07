@@ -29,6 +29,7 @@ const exitButton = document.getElementById('exitButton');
 const resetButton = document.getElementById('resetButton');
 const toolsButton = document.getElementById('toolsButton');
 const logButton = document.getElementById('logButton');
+const undoButton = document.getElementById('undoButton');
 
 const p1Button = document.getElementById('duelist1');
 const p2Button = document.getElementById('duelist2');
@@ -49,7 +50,7 @@ p2Button.onclick = function () { swapPlayers(this); };
 resetButton.onclick = () => reset();
 toolsButton.onclick = () => openTools();
 logButton.onclick = () => openLog();
-
+undoButton.onclick = () => undo();
 
     
 calc.addEventListener('click', (event) => {
@@ -59,6 +60,10 @@ calc.addEventListener('click', (event) => {
         eval(val);
     }
 })
+
+function undo(){
+
+}// undo
 
 function equals(a, b){
     // this function will be called when the equals sign is pressed
